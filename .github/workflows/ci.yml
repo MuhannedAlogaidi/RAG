@@ -30,14 +30,11 @@ jobs:
         with:
           files: coverage/lcov.info
           fail_ci_if_error: true
-          
+
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@v2
         env:
           SONAR_TOKEN: ${{ secrets.RAGR19 }}
 
-
-
-
 #        env:
-          #CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+#CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}

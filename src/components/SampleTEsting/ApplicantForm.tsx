@@ -1,38 +1,35 @@
-import { useState } from "react";
-import "./ApplicantForm.css";
+import { useState } from 'react'
+import './ApplicantForm.css'
 
 type FormState = {
-  firstName: string;
-  middleName: string;
-  lastName: string;
-  dob: string;
-  email: string;
-  country: string;
-  gender: string;
-  skills: string[];
-  about: string;
-};
+  firstName: string
+  middleName: string
+  lastName: string
+  dob: string
+  email: string
+  country: string
+  gender: string
+  skills: string[]
+  about: string
+}
 
 const initialState: FormState = {
-  firstName: "",
-  middleName: "",
-  lastName: "",
-  dob: "",
-  email: "",
-  country: "",
-  gender: "",
+  firstName: '',
+  middleName: '',
+  lastName: '',
+  dob: '',
+  email: '',
+  country: '',
+  gender: '',
   skills: [],
-  about: "",
-};
+  about: '',
+}
 
 export function ApplicantForm() {
-  const [form, setForm] = useState<FormState>(initialState);
+  const [form, setForm] = useState<FormState>(initialState)
 
-  function updateField<K extends keyof FormState>(
-    key: K,
-    value: FormState[K]
-  ) {
-    setForm((prev) => ({ ...prev, [key]: value }));
+  function updateField<K extends keyof FormState>(key: K, value: FormState[K]) {
+    setForm((prev) => ({ ...prev, [key]: value }))
   }
 
   function toggleSkill(skill: string) {
@@ -41,12 +38,12 @@ export function ApplicantForm() {
       skills: prev.skills.includes(skill)
         ? prev.skills.filter((s) => s !== skill)
         : [...prev.skills, skill],
-    }));
+    }))
   }
 
   function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    console.log("Submitted form:", form);
+    e.preventDefault()
+    console.log('Submitted form:', form)
   }
 
   return (
@@ -59,7 +56,7 @@ export function ApplicantForm() {
           <input
             type="text"
             value={form.firstName}
-            onChange={(e) => updateField("firstName", e.target.value)}
+            onChange={(e) => updateField('firstName', e.target.value)}
           />
         </label>
 
@@ -68,7 +65,7 @@ export function ApplicantForm() {
           <input
             type="text"
             value={form.middleName}
-            onChange={(e) => updateField("middleName", e.target.value)}
+            onChange={(e) => updateField('middleName', e.target.value)}
           />
         </label>
 
@@ -77,7 +74,7 @@ export function ApplicantForm() {
           <input
             type="text"
             value={form.lastName}
-            onChange={(e) => updateField("lastName", e.target.value)}
+            onChange={(e) => updateField('lastName', e.target.value)}
           />
         </label>
       </div>
@@ -88,7 +85,7 @@ export function ApplicantForm() {
           <input
             type="date"
             value={form.dob}
-            onChange={(e) => updateField("dob", e.target.value)}
+            onChange={(e) => updateField('dob', e.target.value)}
           />
         </label>
 
@@ -97,17 +94,14 @@ export function ApplicantForm() {
           <input
             type="email"
             value={form.email}
-            onChange={(e) => updateField("email", e.target.value)}
+            onChange={(e) => updateField('email', e.target.value)}
           />
         </label>
       </div>
 
       <label>
         Country
-        <select
-          value={form.country}
-          onChange={(e) => updateField("country", e.target.value)}
-        >
+        <select value={form.country} onChange={(e) => updateField('country', e.target.value)}>
           <option value="">Select country</option>
           <option value="us">United States</option>
           <option value="uk">United Kingdom</option>
@@ -122,8 +116,8 @@ export function ApplicantForm() {
             type="radio"
             name="gender"
             value="male"
-            checked={form.gender === "male"}
-            onChange={(e) => updateField("gender", e.target.value)}
+            checked={form.gender === 'male'}
+            onChange={(e) => updateField('gender', e.target.value)}
           />
           Male
         </label>
@@ -133,8 +127,8 @@ export function ApplicantForm() {
             type="radio"
             name="gender"
             value="female"
-            checked={form.gender === "female"}
-            onChange={(e) => updateField("gender", e.target.value)}
+            checked={form.gender === 'female'}
+            onChange={(e) => updateField('gender', e.target.value)}
           />
           Female
         </label>
@@ -142,7 +136,7 @@ export function ApplicantForm() {
 
       <fieldset>
         <legend>Skills</legend>
-        {["JavaScript", "React", "Node.js"].map((skill) => (
+        {['JavaScript', 'React', 'Node.js'].map((skill) => (
           <label key={skill}>
             <input
               type="checkbox"
@@ -159,12 +153,12 @@ export function ApplicantForm() {
         <textarea
           rows={4}
           value={form.about}
-          onChange={(e) => updateField("about", e.target.value)}
+          onChange={(e) => updateField('about', e.target.value)}
         />
       </label>
 
       <button type="submit">Submit Application</button>
     </form>
-  );
+  )
 }
-export default ApplicantForm;
+export default ApplicantForm

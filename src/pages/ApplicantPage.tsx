@@ -1,6 +1,6 @@
-import ApplicantForm from "../components/SampleTEsting/ApplicantForm";
+import ApplicantForm from '../components/SampleTEsting/ApplicantForm'
 
 ApplicantForm
 export function ApplicantPage() {
-  return <ApplicantForm />;
+  return <ApplicantForm />
 }

@@ -1,11 +1,11 @@
-import { createBrowserRouter } from "react-router";
-import { AppLayout } from "./layouts/AppLayout";
-import { HomePage } from "./pages/HomePage";
-import { ApplicantPage } from "./pages/ApplicantPage";
+import { createBrowserRouter } from 'react-router'
+import { AppLayout } from './layouts/AppLayout'
+import { HomePage } from './pages/HomePage'
+import { ApplicantPage } from './pages/ApplicantPage'
 
 export const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <AppLayout />,
     children: [
       {
@@ -13,9 +13,9 @@ export const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: "apply",
+        path: 'apply',
         element: <ApplicantPage />,
       },
     ],
   },
-]);
+])
