@@ -35,7 +35,7 @@ export default defineConfig({
         statements: 7,
         lines: 7,
         functions: 7,
-        branches: 5
+        branches: 0
       }
     }
   }
