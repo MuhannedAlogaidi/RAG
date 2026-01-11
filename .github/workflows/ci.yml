@@ -35,6 +35,8 @@ jobs:
         uses: SonarSource/sonarcloud-github-action@v2
         env:
           SONAR_TOKEN: ${{ secrets.RAGR19 }}
+      - name: Check formatting (Prettier)
+        run: npm run format:check
 
 #        env:
 #CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
