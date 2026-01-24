@@ -1,9 +1,21 @@
 // App provider
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import { AppContext } from './AppContext'
 
-export function AppProvider({ children }: { children: React.ReactNode }) {
+type Props = {
+  children: React.ReactNode
+}
+
+export function AppProvider({ children }: Readonly<Props>) {
   const [appReady, setAppReady] = useState(false)
 
-  return <AppContext.Provider value={{ appReady, setAppReady }}>{children}</AppContext.Provider>
+  const value = useMemo(
+    () => ({
+      appReady,
+      setAppReady,
+    }),
+    [appReady]
+  )
+
+  return <AppContext.Provider value={value}>{children}</AppContext.Provider>
 }

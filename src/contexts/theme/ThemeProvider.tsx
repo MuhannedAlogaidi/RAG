@@ -1,13 +1,26 @@
-// Theme provider
-import React, { useState } from 'react'
-import { ThemeContext, ThemeMode } from './ThemeContext'
+import React, { useMemo, useState } from 'react'
+import { ThemeContext } from './ThemeContext'
+import type { ThemeMode } from './ThemeContext'
 
-export function ThemeProvider({ children }: { children: React.ReactNode }) {
+type Props = {
+  children: React.ReactNode
+}
+
+export function ThemeProvider({ children }: Readonly<Props>) {
   const [theme, setTheme] = useState<ThemeMode>('light')
 
-  function toggleTheme() {
+  const toggleTheme = () => {
     setTheme((prev) => (prev === 'light' ? 'dark' : 'light'))
   }
 
-  return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>
+  const value = useMemo(
+    () => ({
+      theme,
+      setTheme,
+      toggleTheme,
+    }),
+    [theme]
+  )
+
+  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
 }

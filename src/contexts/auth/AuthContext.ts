@@ -1,4 +1,3 @@
-// Auth context
 import { createContext, useContext } from 'react'
 
 export type AuthUser = {

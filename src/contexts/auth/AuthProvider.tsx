@@ -1,17 +1,33 @@
-// Auth provider
-import React, { useState } from 'react'
-import { AuthContext, AuthUser } from './AuthContext'
+import React, { useMemo, useState } from 'react'
+import { AuthContext } from './AuthContext'
+import type { AuthUser } from './AuthContext'
 
-export function AuthProvider({ children }: { children: React.ReactNode }) {
+type Props = {
+  children: React.ReactNode
+}
+
+export function AuthProvider({ children }: Readonly<Props>) {
   const [user, setUser] = useState<AuthUser>(null)
 
   function login(name: string) {
-    setUser({ id: 'demo-id', name })
+    setUser({
+      id: crypto.randomUUID(),
+      name,
+    })
   }
 
   function logout() {
     setUser(null)
   }
 
-  return <AuthContext.Provider value={{ user, login, logout }}>{children}</AuthContext.Provider>
+  const value = useMemo(
+    () => ({
+      user,
+      login,
+      logout,
+    }),
+    [user]
+  )
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }

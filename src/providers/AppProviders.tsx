@@ -4,12 +4,16 @@ import { AuthProvider } from '../contexts/auth/AuthProvider'
 import { ThemeProvider } from '../contexts/theme/ThemeProvider'
 import { AppProvider } from '../contexts/app/AppProvider'
 
-export function AppProviders({ children }: { children: React.ReactNode }) {
+type Props = {
+  children: React.ReactNode
+}
+
+export function AppProviders({ children }: Readonly<Props>) {
   return (
-    <AuthProvider>
-      <ThemeProvider>
+    <ThemeProvider>
+      <AuthProvider>
         <AppProvider>{children}</AppProvider>
-      </ThemeProvider>
-    </AuthProvider>
+      </AuthProvider>
+    </ThemeProvider>
   )
 }
