@@ -3,6 +3,13 @@ import { render, screen } from '@testing-library/react'
 import { createMemoryRouter, RouterProvider, Outlet } from 'react-router-dom'
 
 import RouteErrorPage from '../RouteErrorPage'
+beforeEach(() => {
+  vi.spyOn(console, "error").mockImplementation(() => {});
+});
+
+afterEach(() => {
+  vi.restoreAllMocks();
+});
 
 function RootWithOutlet() {
   return (
