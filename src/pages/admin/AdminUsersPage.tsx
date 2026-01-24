@@ -4,5 +4,5 @@ export default function AdminUsersPage() {
       <h1>Admin Users</h1>
       <p>Manage application users and roles.</p>
     </section>
-  );
+  )
 }

@@ -4,5 +4,5 @@ export default function ProfilePage() {
       <h1>Profile</h1>
       <p>View and update your profile details.</p>
     </section>
-  );
+  )
 }

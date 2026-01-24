@@ -4,5 +4,5 @@ export default function SettingsPage() {
       <h1>Settings</h1>
       <p>Configure your application preferences.</p>
     </section>
-  );
+  )
 }

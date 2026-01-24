@@ -4,5 +4,5 @@ export default function ApplicantPage() {
       <h1>Applicant</h1>
       <p>Baseline applicant page.</p>
     </main>
-  );
+  )
 }
