@@ -34,3 +34,9 @@ Thumbs.db
 
 *.zip
 *.tar.gz
+
+
+dist/
+coverage/
+.vite/
+.env

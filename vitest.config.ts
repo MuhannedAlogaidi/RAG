@@ -1,32 +1,32 @@
-import { defineConfig } from "vitest/config";
+import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
   test: {
-    environment: "jsdom",
-    setupFiles: "./vitest.setup.ts",
+    environment: 'jsdom',
+    setupFiles: './vitest.setup.ts',
     globals: true,
 
     // ✅ Built-in JUnit reporter (no package needed)
-    reporters: ["default", "junit"],
+    reporters: ['default', 'junit'],
 
     outputFile: {
-      junit: "test-report.xml"
+      junit: 'test-report.xml',
     },
 
     coverage: {
-      provider: "v8",
+      provider: 'v8',
 
-      reporter: ["text", "html", "json", "lcov"],
-      reportsDirectory: "./coverage",
+      reporter: ['text', 'html', 'json', 'lcov'],
+      reportsDirectory: './coverage',
 
-      include: ["src/**/*.{ts,tsx}"],
+      include: ['src/**/*.{ts,tsx}'],
       exclude: [
-        "src/test/**",
-        "src/**/*.test.{ts,tsx}",
-        "src/**/*.spec.{ts,tsx}",
-        "src/main.tsx",
-        "src/router.tsx",
-        "src/layouts/**"
+        'src/test/**',
+        'src/**/*.test.{ts,tsx}',
+        'src/**/*.spec.{ts,tsx}',
+        'src/main.tsx',
+        'src/router.tsx',
+        'src/layouts/**',
       ],
 
       clean: true,
@@ -35,8 +35,8 @@ export default defineConfig({
         statements: 7,
         lines: 7,
         functions: 7,
-        branches: 0
-      }
-    }
-  }
-});
+        branches: 0,
+      },
+    },
+  },
+})
