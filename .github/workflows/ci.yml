@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 jobs:
-  test-and-coverage:
+  quality-gate:
     runs-on: ubuntu-latest
 
     steps:
@@ -18,8 +18,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
 
-      # ✅ npm cache (Subtask 4)
+      # Cache npm
       - name: Cache npm
         uses: actions/cache@v4
         with:
@@ -31,28 +32,35 @@ jobs:
       - name: Install dependencies
         run: npm ci --legacy-peer-deps
 
-      # ✅ Lint should already exist (if not, add later)
-      # - name: Lint (ESLint)
-      #   run: npm run lint
-
-      # ✅ Prettier BEFORE tests and Sonar
+      # Prettier — formatting gate
       - name: Check formatting (Prettier)
         run: npm run format:check
 
-      - name: Run tests with coverage
-        run: npm run coverage
+      # Lint — code quality
+      - name: Lint (ESLint)
+        run: npm run lint
 
+      # Type safety — TypeScript
+      - name: Type check
+        run: npm run typecheck
+
+      # Tests + Coverage
+      - name: Run tests with coverage
+        run: npm run test:coverage
+
+      # Build — production validation
+      - name: Build project
+        run: npm run build
+
+      # Upload coverage to Codecov
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
         with:
           files: coverage/lcov.info
           fail_ci_if_error: true
 
-      # ✅ Sonar LAST
+      # SonarCloud — LAST
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@v2
         env:
           SONAR_TOKEN: ${{ secrets.RAGR19 }}
-
-#        env:
-#CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
