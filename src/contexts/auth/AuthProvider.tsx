@@ -1,3 +1,4 @@
+// Auth provider
 import React, { useMemo, useState } from 'react'
 import { AuthContext } from './AuthContext'
 import type { AuthUser } from './AuthContext'

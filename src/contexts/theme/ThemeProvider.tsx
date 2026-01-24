@@ -1,3 +1,4 @@
+// Theme provider
 import React, { useMemo, useState } from 'react'
 import { ThemeContext } from './ThemeContext'
 import type { ThemeMode } from './ThemeContext'
@@ -9,14 +10,13 @@ type Props = {
 export function ThemeProvider({ children }: Readonly<Props>) {
   const [theme, setTheme] = useState<ThemeMode>('light')
 
-  const toggleTheme = () => {
+  function toggleTheme() {
     setTheme((prev) => (prev === 'light' ? 'dark' : 'light'))
   }
 
   const value = useMemo(
     () => ({
       theme,
-      setTheme,
       toggleTheme,
     }),
     [theme]
