@@ -23,6 +23,8 @@ import AdminUsersPage from './pages/admin/AdminUsersPage'
 // error fallback page
 import ErrorPage from './pages/errors/ErrorPage'
 
+import { ROUTE_SEGMENTS } from './router/paths'
+
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -30,36 +32,34 @@ export const router = createBrowserRouter([
     errorElement: <RouteErrorPage />,
     children: [
       { index: true, element: <HomePage /> },
-      { path: 'about', element: <AboutPage /> },
-      { path: 'applicant', element: <ApplicantPage /> },
+      { path: ROUTE_SEGMENTS.about, element: <AboutPage /> },
+      { path: ROUTE_SEGMENTS.applicant, element: <ApplicantPage /> },
 
       // AUTH ROUTES
       {
-        path: 'auth',
+        path: ROUTE_SEGMENTS.auth.root,
         children: [
-          { path: 'login', element: <LoginPage /> },
-          { path: 'register', element: <RegisterPage /> },
+          { path: ROUTE_SEGMENTS.auth.login, element: <LoginPage /> },
+          { path: ROUTE_SEGMENTS.auth.register, element: <RegisterPage /> },
         ],
       },
 
       // APP ROUTES
       {
-        path: 'app',
+        path: ROUTE_SEGMENTS.app.root,
         children: [
-          { path: 'dashboard', element: <DashboardPage /> },
-          { path: 'profile', element: <ProfilePage /> },
-          { path: 'settings', element: <SettingsPage /> },
+          { path: ROUTE_SEGMENTS.app.dashboard, element: <DashboardPage /> },
+          { path: ROUTE_SEGMENTS.app.profile, element: <ProfilePage /> },
+          { path: ROUTE_SEGMENTS.app.settings, element: <SettingsPage /> },
         ],
       },
 
-      // ADMIN ROUTES
       {
-        path: 'admin',
-        children: [{ path: 'users', element: <AdminUsersPage /> }],
+        path: ROUTE_SEGMENTS.admin.root,
+        children: [{ path: ROUTE_SEGMENTS.admin.users, element: <AdminUsersPage /> }],
       },
 
-      // OPTIONAL ERROR PAGE
-      { path: 'error', element: <ErrorPage /> },
+      { path: ROUTE_SEGMENTS.error, element: <ErrorPage /> },
     ],
   },
 ])
